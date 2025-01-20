@@ -34,16 +34,14 @@ public class UsuarioController {
 
         Usuario usuario = usuarioService.findByNombre(nombre);
 
-        if (usuario == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (usuario == null) return new ResponseEntity<>("El usuario no existe", HttpStatus.NOT_FOUND);
 
-        if (!Objects.equals(usuario.getContrasena(), contrasena)) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if (!Objects.equals(usuario.getContrasena(), contrasena)) return new ResponseEntity<>("Contrasena incorrecta", HttpStatus.UNAUTHORIZED);
 
         System.out.println("Me crea el token");
         String token = getJWTToken(nombre);
 
         usuario.setToken(token);
-
-        ResponseEntity.ok(usuario);
 
         return ResponseEntity.ok(usuario);
     }
