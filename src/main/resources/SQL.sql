@@ -28,9 +28,10 @@ alter table habitaciones
             references hoteles (id_hotel);
 
 create table usuarios (
-    id_usuario bigint primary key,
+    id_usuario bigint not null auto_increment,
     nombre varchar(255) not null,
-    contrasena varchar(255) not null
+    contrasena varchar(255) not null,
+    primary key (id_usuario)
 ) engine=InnoDB;
 
 INSERT INTO hoteles(categoria, descripcion, localidad, nombre, piscina) VALUES('1', 'hotel 1', 'Valladolid', 'hotel 1', false);
