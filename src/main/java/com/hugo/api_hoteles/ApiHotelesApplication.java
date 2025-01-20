@@ -30,8 +30,8 @@ public class ApiHotelesApplication {
                 .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers(HttpMethod.POST, "/user").permitAll() // Permite accesos a "/user"
-                    .requestMatchers("/doc/swagger-ui/**").permitAll() // Permite accesos a swagger
-                    .requestMatchers("/v3/api-docs/**").permitAll() // Permite accesos a swagger
+                    .requestMatchers("/doc/swagger-ui/**").permitAll() // Permite accesos a interfaz grafica swagger
+                    .requestMatchers("/v3/api-docs/**").permitAll() // Permite accesos a informacion swagger
                     .anyRequest().authenticated() // Todo lo demás requiere autenticación
                 );
             return http.build(); } }
