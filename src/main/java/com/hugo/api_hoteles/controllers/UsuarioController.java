@@ -6,6 +6,8 @@ import com.hugo.api_hoteles.repositories.UsuarioRepository;
 import com.hugo.api_hoteles.service.UsuarioService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,21 +29,23 @@ public class UsuarioController {
     }
 
     @PostMapping("user")
-    public Usuario login(@RequestParam("nombre") String nombre, @RequestParam("contrasena") String contrasena) {
+    public ResponseEntity<?> login(@RequestParam("nombre") String nombre, @RequestParam("contrasena") String contrasena) {
 //        Usuario usuario = UsuarioDAO.obtener(nombre);
 
         Usuario usuario = usuarioService.findByNombre(nombre);
 
-        if (usuario == null) return null;
+        if (usuario == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        if (!Objects.equals(usuario.getContrasena(), contrasena)) return null;
+        if (!Objects.equals(usuario.getContrasena(), contrasena)) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         System.out.println("Me crea el token");
         String token = getJWTToken(nombre);
 
         usuario.setToken(token);
 
-        return usuario;
+        ResponseEntity.ok(usuario);
+
+        return ResponseEntity.ok(usuario);
     }
 
     private String getJWTToken(String username) {
