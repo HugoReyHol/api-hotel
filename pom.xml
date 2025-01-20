@@ -81,19 +81,18 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
-        <!-- API, java.xml.bind module -->
+        <!-- Sustituto de Jakarta.xml.bind -->
         <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
         </dependency>
         <!-- Runtime, com.sun.xml.bind module -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
+            <version>4.0.5</version>
         </dependency>
-
     </dependencies>
 
     <build>
