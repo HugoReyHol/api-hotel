@@ -27,6 +27,11 @@ alter table habitaciones
         foreign key (id_hotel)
             references hoteles (id_hotel);
 
+create table usuario (
+    id_usuario bigint primary key,
+    contrasena varchar(255) not null
+) engine=InnoDB;
+
 INSERT INTO hoteles(categoria, descripcion, localidad, nombre, piscina) VALUES('1', 'hotel 1', 'Valladolid', 'hotel 1', false);
 INSERT INTO hoteles(categoria, descripcion, localidad, nombre, piscina) VALUES('2', 'hotel 2', 'Valladolid', 'hotel 2', true);
 INSERT INTO hoteles(categoria, descripcion, localidad, nombre, piscina) VALUES('1', 'hotel 3', 'Madrid', 'hotel 3', false);
@@ -38,3 +43,5 @@ INSERT INTO habitaciones(desayuno, ocupada, precio, tamano, id_hotel) VALUES(fal
 INSERT INTO habitaciones(desayuno, ocupada, precio, tamano, id_hotel) VALUES(true, true, 10.40, 2, 2);
 INSERT INTO habitaciones(desayuno, ocupada, precio, tamano, id_hotel) VALUES(true, false, 10.40, 2, 2);
 INSERT INTO habitaciones(desayuno, ocupada, precio, tamano, id_hotel) VALUES(true, false, 7.40, 1, 2);
+
+INSERT INTO usuario(contrasena) VALUE('juan');
