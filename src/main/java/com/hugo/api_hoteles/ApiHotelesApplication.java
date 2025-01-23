@@ -32,6 +32,9 @@ public class ApiHotelesApplication {
                     .requestMatchers(HttpMethod.POST, "/user").permitAll() // Permite accesos a "/user"
                     .requestMatchers("/doc/swagger-ui/**").permitAll() // Permite accesos a interfaz grafica swagger
                     .requestMatchers("/v3/api-docs/**").permitAll() // Permite accesos a informacion swagger
+                    .requestMatchers(HttpMethod.GET, "/api/hotel/localidad/**").permitAll() // Permite accesos a hoteles por localidad
+                    .requestMatchers(HttpMethod.GET, "/api/hotel/categoria/**").permitAll() // Permite accesos a hoteles por categoria
+                    .requestMatchers(HttpMethod.GET, "/api/habitacion/**").permitAll() // Permite accesos a busqueda de habitaciones
                     .anyRequest().authenticated() // Todo lo demás requiere autenticación
                 );
             return http.build(); } }
